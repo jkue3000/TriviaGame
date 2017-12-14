@@ -1,7 +1,3 @@
-// On start click run timmer and display questions
-
-// then need to show the questions and timer
-
 
 // var arrays to refernece and show questions
 var myQuestions = [
@@ -69,8 +65,37 @@ var wrong = 0;
 var unanswered = 0;
 
 
+// first Display when on click show click to start timer and take the quiz
+var newDiv = $('<div>');
+newDiv.addClass('startText')
+newDiv.append('<h1>R U FUN QUIZ!?!?</h1>')
+$('body').append(newDiv);
+
+var startGameBtn = $('<button>');
+startGameBtn.addClass('startGame');
+startGameBtn.append('Start Game')
+$('body').append(startGameBtn);
+
+
+// onclick function to show timer and questions
+$('.startGame').on('click', function(){
+  $('.startText').remove();
+  $('.startGame').remove();
+  $('body').html(questionsToHtml());
+  var timerSpan = $('<span>');
+  timerSpan.addClass('timer');
+  $('h1').append(timerSpan);
+  run();
+
+});
+
+
+
+
+
+
 // get questions and choices on the screen
-function questionsToHtml(){ 
+function questionsToHtml(){
 
   // for loop for the questions to display on the HTML
   for(i = 0; i < myQuestions.length; i++){
@@ -80,6 +105,10 @@ function questionsToHtml(){
     $('.parent').append(newElement);
     }
 
+    $('.parent').prepend('<h1>Let Us See How Fun You Actually Are!</h1>')
+    
+    
+    
     // could not figure out how to create a loop that could work to display the answers to the questions properly
   $('.questions0').append('<input type= radio name= group0 value=' + myQuestions[0].answers[0] +'>'+ myQuestions[0].answers[0]+'</input> <br>');
   $('.questions0').append('<input type= radio name= group0 value=' + myQuestions[0].answers[1] +'>'+ myQuestions[0].answers[1]+'</input> <br>');
@@ -94,57 +123,105 @@ function questionsToHtml(){
   $('.questions2').append('<input type= radio name= group2 value=' + myQuestions[2].answers[2] +'>'+ myQuestions[2].answers[2]+'</input> <br>');
   $('.questions2').append('<input type= radio name= group2 value=' + myQuestions[2].answers[3] +'>'+ myQuestions[2].answers[3]+'</input> <br>');
 
-  $('.questions3').append('<input type= radio name= group3 value=' + myQuestions[3].answers[0] +'>'+ myQuestions[3].answers[0]+'</input>');
-  $('.questions3').append('<input type= radio name= group3 value=' + myQuestions[3].answers[1] +'>'+ myQuestions[3].answers[1]+'</input>');
+  $('.questions3').append('<input type= radio name= group3 value=' + myQuestions[3].answers[0] +'>'+ myQuestions[3].answers[0]+'</input> <br>');
+  $('.questions3').append('<input type= radio name= group3 value=' + myQuestions[3].answers[1] +'>'+ myQuestions[3].answers[1]+'</input> <br>');
 
-  $('.questions4').append('<input type= radio name= group4 value=' + myQuestions[4].answers[0] +'>'+ myQuestions[4].answers[0]+'</input>');
-  $('.questions4').append('<input type= radio name= group4 value=' + myQuestions[4].answers[1] +'>'+ myQuestions[4].answers[1]+'</input>');
-  $('.questions4').append('<input type= radio name= group4 value=' + myQuestions[4].answers[2] +'>'+ myQuestions[4].answers[2]+'</input>');
-  $('.questions4').append('<input type= radio name= group4 value=' + myQuestions[4].answers[3] +'>'+ myQuestions[4].answers[3]+'</input>');
+  $('.questions4').append('<input type= radio name= group4 value=' + myQuestions[4].answers[0] +'>'+ myQuestions[4].answers[0]+'</input> <br>');
+  $('.questions4').append('<input type= radio name= group4 value=' + myQuestions[4].answers[1] +'>'+ myQuestions[4].answers[1]+'</input> <br>');
+  $('.questions4').append('<input type= radio name= group4 value=' + myQuestions[4].answers[2] +'>'+ myQuestions[4].answers[2]+'</input> <br>');
+  $('.questions4').append('<input type= radio name= group4 value=' + myQuestions[4].answers[3] +'>'+ myQuestions[4].answers[3]+'</input> <br>');
 
-  $('.questions5').append('<input type= radio name= group5 value=' + myQuestions[5].answers[0] +'>'+ myQuestions[5].answers[0]+'</input>');
-  $('.questions5').append('<input type= radio name= group5 value=' + myQuestions[5].answers[1] +'>'+ myQuestions[5].answers[1]+'</input>');
-  $('.questions5').append('<input type= radio name= group5 value=' + myQuestions[5].answers[2] +'>'+ myQuestions[5].answers[2]+'</input>');
-  $('.questions5').append('<input type= radio name= group5 value=' + myQuestions[5].answers[3] +'>'+ myQuestions[5].answers[3]+'</input>');
+  $('.questions5').append('<input type= radio name= group5 value=' + myQuestions[5].answers[0] +'>'+ myQuestions[5].answers[0]+'</input> <br>');
+  $('.questions5').append('<input type= radio name= group5 value=' + myQuestions[5].answers[1] +'>'+ myQuestions[5].answers[1]+'</input> <br>');
+  $('.questions5').append('<input type= radio name= group5 value=' + myQuestions[5].answers[2] +'>'+ myQuestions[5].answers[2]+'</input> <br>');
+  $('.questions5').append('<input type= radio name= group5 value=' + myQuestions[5].answers[3] +'>'+ myQuestions[5].answers[3]+'</input> <br>');
 
-  $('.questions6').append('<input type= radio name= group6 value=' + myQuestions[6].answers[0] +'>'+ myQuestions[6].answers[0]+'</input>');
-  $('.questions6').append('<input type= radio name= group6 value=' + myQuestions[6].answers[1] +'>'+ myQuestions[6].answers[1]+'</input>');
-  $('.questions6').append('<input type= radio name= group6 value=' + myQuestions[6].answers[2] +'>'+ myQuestions[6].answers[2]+'</input>');
-  $('.questions6').append('<input type= radio name= group6 value=' + myQuestions[6].answers[3] +'>'+ myQuestions[6].answers[3]+'</input>');
+  $('.questions6').append('<input type= radio name= group6 value=' + myQuestions[6].answers[0] +'>'+ myQuestions[6].answers[0]+'</input> <br>');
+  $('.questions6').append('<input type= radio name= group6 value=' + myQuestions[6].answers[1] +'>'+ myQuestions[6].answers[1]+'</input> <br>');
+  $('.questions6').append('<input type= radio name= group6 value=' + myQuestions[6].answers[2] +'>'+ myQuestions[6].answers[2]+'</input> <br>');
+  $('.questions6').append('<input type= radio name= group6 value=' + myQuestions[6].answers[3] +'>'+ myQuestions[6].answers[3]+'</input> <br>');
 
-  $('.questions7').append('<input type= radio name= group7 value=' + myQuestions[7].answers[0] +'>'+ myQuestions[7].answers[0]+'</input>');
-  $('.questions7').append('<input type= radio name= group7 value=' + myQuestions[7].answers[1] +'>'+ myQuestions[7].answers[1]+'</input>');
+  $('.questions7').append('<input type= radio name= group7 value=' + myQuestions[7].answers[0] +'>'+ myQuestions[7].answers[0]+'</input> <br>');
+  $('.questions7').append('<input type= radio name= group7 value=' + myQuestions[7].answers[1] +'>'+ myQuestions[7].answers[1]+'</input> <br>');
 
-  $('.questions8').append('<input type= radio name= group8 value=' + myQuestions[8].answers[0] +'>'+ myQuestions[8].answers[0]+'</input>');
-  $('.questions8').append('<input type= radio name= group8 value=' + myQuestions[8].answers[1] +'>'+ myQuestions[8].answers[1]+'</input>');
-  $('.questions8').append('<input type= radio name= group8 value=' + myQuestions[8].answers[2] +'>'+ myQuestions[8].answers[2]+'</input>');
-  $('.questions8').append('<input type= radio name= group8 value=' + myQuestions[8].answers[3] +'>'+ myQuestions[8].answers[3]+'</input>');
+  $('.questions8').append('<input type= radio name= group8 value=' + myQuestions[8].answers[0] +'>'+ myQuestions[8].answers[0]+'</input> <br>');
+  $('.questions8').append('<input type= radio name= group8 value=' + myQuestions[8].answers[1] +'>'+ myQuestions[8].answers[1]+'</input> <br>');
+  $('.questions8').append('<input type= radio name= group8 value=' + myQuestions[8].answers[2] +'>'+ myQuestions[8].answers[2]+'</input> <br>');
+  $('.questions8').append('<input type= radio name= group8 value=' + myQuestions[8].answers[3] +'>'+ myQuestions[8].answers[3]+'</input> <br>');
 
-  $('.questions9').append('<input type= radio name= group9 value=' + myQuestions[9].answers[0] +'>'+ myQuestions[9].answers[0]+'</input>');
-  $('.questions9').append('<input type= radio name= group9 value=' + myQuestions[9].answers[1] +'>'+ myQuestions[9].answers[1]+'</input>');
+  $('.questions9').append('<input type= radio name= group9 value=' + myQuestions[9].answers[0] +'>'+ myQuestions[9].answers[0]+'</input> <br>');
+  $('.questions9').append('<input type= radio name= group9 value=' + myQuestions[9].answers[1] +'>'+ myQuestions[9].answers[1]+'</input> <br>');
 
-  $('.questions10').append('<input type= radio name= group10 value=' + myQuestions[10].answers[0] +'>'+ myQuestions[10].answers[0]+'</input>');
-  $('.questions10').append('<input type= radio name= group10 value=' + myQuestions[10].answers[1] +'>'+ myQuestions[10].answers[1]+'</input>');
+  $('.questions10').append('<input type= radio name= group10 value=' + myQuestions[10].answers[0] +'>'+ myQuestions[10].answers[0]+'</input> <br>');
+  $('.questions10').append('<input type= radio name= group10 value=' + myQuestions[10].answers[1] +'>'+ myQuestions[10].answers[1]+'</input> <br>');
 
-  $('.parent').append('<input type= submit value= submit></input>');
-  
+  $('.parent').append('<input type=button value=submit id=answerCheck></input>');
+
+
+// Submit form button
+  $('#answerCheck').on('click', function (){
+    var formVals = $('form').serializeArray();
+    for (i = 0; i < myQuestions.length; i++) {
+
+      if (formVals[i] == undefined){
+        unanswered++;
+        console.log(unanswered);
+      } 
+      
+      if (formVals[i].value == myQuestions[i].correct){
+        score++;
+        console.log(score);
+      } else {
+        wrong++;
+        console.log(wrong);
+      }
+    }
+    displayScore();
+  });
 
 };
 
 
-console.log(myQuestions[4].question);
-questionsToHtml();
-
-console.log()
 
 
-// $(‘#checkAnswers’).on(‘click’, function(){
-//    var formVals = $(‘form’).serializeArray();
-//    for(i = 0; i < questions.length; i++) {
-//        if (formVals[i].value == questions[i].correct) {
-//            right++;
-//        } else {
-//            wrong++;
-//        }
-//    }
-// });
+
+// Timer count down
+var number = 1000;
+
+var intervalId;
+
+$(".startGame").on("click", run);
+
+function run() {
+  intervalId = setInterval(decrement, 1000);
+}
+
+function decrement() {
+
+  number--;
+
+  $(".timer").html("<h2>Seconds:" + number + "</h2>");
+
+  if (number === 0) {
+
+    stop();
+    $('div').remove();
+    $('body').html('<h1>Your Fun-O-Meter Scores</h1>' + '<br>' + 'Right Answers: ' + score + '<br>' + 'Wrong Answers: ' + wrong + '<br>' + 'Unanswered: ' + unanswered);
+  }
+}
+
+function stop() {
+
+  clearInterval(intervalId);
+}
+
+
+// Display scores when submited
+function displayScore(){
+  $('div').remove();
+  $('body').html('<h1>Your Fun-O-Meter Scores</h1>' + '<br>' + 'Right Answers: ' + score + '<br>' + 'Wrong Answers: ' + wrong + '<br>' + 'Unanswered: ' + unanswered);
+}
+
+
+
+
